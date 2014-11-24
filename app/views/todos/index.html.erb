@@ -1,0 +1,13 @@
+<div>
+  <h1> Welcome To Todo: <span>A place where stuff gets done!</span> </h1>
+</div>
+<div id="not_completed">
+  <% @todos.each do |todo| %>
+    <div class="todo"><%= todo.body %>
+      <p>Done? <%= todo.completed %> </p>
+    <%=button_to 'Check Off', {action: 'finished', id: todo.id}, method: :patch%>
+    <%= button_to 'Delete', {action: 'destroy', id: todo.id}, method: :delete %>
+    </div>
+  <% end %>
+</div>
+<%= render 'new' %>

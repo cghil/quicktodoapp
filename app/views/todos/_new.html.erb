@@ -1,0 +1,9 @@
+<%= form_for :todo, url: todos_path do |f| %>
+  <div>
+    <%= f.label "What To Do?" %>
+    <%= f.text_field :body %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
