@@ -1,13 +1,22 @@
-<div>
-  <h1> Welcome To Todo: <span>A place where stuff gets done!</span> </h1>
+<div id="container">
+  <div>
+    <h1 class="text-center"> Welcome To Todo: <span>A place where stuff gets done!</span> </h1>
+  </div>
+  <div id="not_completed" class="row-fluid">
+    <% @todos.each do |todo| %>
+      <div class="todo span12 bg well simple-border">
+        <div class="text-center">
+          <p class="inline"> <%= todo.body %> </p>
+          <p class="inline">Done? <%= todo.completed %> </p>
+        </div>
+      <div class="inline-block float-right">
+        <%=button_to 'Check Off', {action: 'finished', id: todo.id}, method: :patch, class: "btn btn-success center-block"%>
+      </div>
+      <div class="inline-block float-right">
+        <%= button_to 'Delete', {action: 'destroy', id: todo.id}, method: :delete, class: "btn btn-danger center-block"%>
+      </div>
+      </div>
+    <% end %>
+  </div>
+  <%= render 'new' %>
 </div>
-<div id="not_completed">
-  <% @todos.each do |todo| %>
-    <div class="todo"><%= todo.body %>
-      <p>Done? <%= todo.completed %> </p>
-    <%=button_to 'Check Off', {action: 'finished', id: todo.id}, method: :patch%>
-    <%= button_to 'Delete', {action: 'destroy', id: todo.id}, method: :delete %>
-    </div>
-  <% end %>
-</div>
-<%= render 'new' %>

@@ -1,9 +1,13 @@
-<%= form_for :todo, url: todos_path do |f| %>
-  <div>
-    <%= f.label "What To Do?" %>
-    <%= f.text_field :body %>
+<div class="row-fluid">
+  <div class="span12 bg border">
+    <%= form_for :todo, url: todos_path, class: "form-inline text-center" do |f| %>
+    <div class="form-group text-center">
+      <%= f.label "What To Do?" %>
+      <%= f.text_field :body %>
+    </div>
+    <div>
+      <%= f.submit class: "btn btn-default center-block"%>
+    </div>
   </div>
-  <div>
-    <%= f.submit %>
-  </div>
-<% end %>
+  <% end %>
+</div>
