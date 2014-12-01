@@ -1,29 +1,39 @@
-<div id="container">
+<div class="container">
   <div>
     <h1 class="text-center"> Welcome To Todo: <span>A place where stuff gets done!</span> </h1>
   </div>
-  <div id="not_completed">
+  <div id="todo list">
     <% @todos.each do |todo| %>
-    <div class="todo row well simple-border">
-      <div class="text-center col-md-10">
-        <p class="inline"> <%= todo.body %> </p>
-        <p class="inline">Done? <%= todo.completed %> </p>
+    <div class="todo well simple-border">
+      <div class="row">
+        <div class="col-xs-1">
+          <div class="box">
+            <% if todo.completed %>
+            <i class="fa fa-check fa-4x"></i>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-xs-2"></div>
+        <div class="col-xs-6">
+          <p class='text-center'> <%= todo.body %> </p>
+        </div>
+        <div class="col-xs-3"></div>
       </div>
-      <div class="inline-block col-md-1">
-        <%=button_to 'Check Off', {action: 'finished', id: todo.id}, method: :patch, class: "btn btn-success center-block"%>
-      </div>
-      <div class="inline-block col-md-1">
+      <div class="row">
+        <div class="col-xs-9"></div>
+        <div class="col-xs-2">
+          <% if todo.completed == false %>
+          <%=button_to 'Check Off', {action: 'finished', id: todo.id}, method: :patch, class: "btn btn-success center-block"%>
+          <% end %>
+        </div>
+        <div class="col-xs-1 debugger">
         <%= button_to 'Delete', {action: 'destroy', id: todo.id}, method: :delete, class: "btn btn-danger center-block"%>
+        </div>
       </div>
     </div>
     <% end %>
   </div>
   <%= render 'new'%>
-</div>
-<div class="row">
-  <div class="col-md-11">
-  </div>
-  <div class="col-md-1">
     <i class="fa fa-trash fa-4x"></i>
-  </div>
 </div>
+
