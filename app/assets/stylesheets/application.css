@@ -27,11 +27,6 @@
   /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)*/
 }
 
-#container {
-  max-width: 60%;
-  margin-left: 20%;
-}
-
 .inline {
   display: inline;
 }
@@ -42,4 +37,8 @@
 
 .done {
   text-decoration: line-through;
+}
+
+.debugger {
+  border: red dotted 1px;
 }

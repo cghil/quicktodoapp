@@ -4,12 +4,26 @@
   </div>
   <div id="not_completed">
     <% @todos.each do |todo| %>
-    <div class="todo row well simple-border">
-
-      <p class="inline"> <%= todo.body %> </p>
-      <p class="inline">Done? <%= todo.completed %> </p>
-      <%=button_to 'Check Off', {action: 'finished', id: todo.id}, method: :patch, class: "btn btn-success center-block"%>
-      <%= button_to 'Delete', {action: 'destroy', id: todo.id}, method: :delete, class: "btn btn-danger center-block"%>
+    <div class="todo well simple-border">
+      <div class="row">
+        <div class="col-xs-12">
+          <p class='text-center'> <%= todo.body %> </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <p class='text-center'>Done? <%= todo.completed %> </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-8"></div>
+        <div class="col-xs-2 debugger">
+          <%=button_to 'Check Off', {action: 'finished', id: todo.id}, method: :patch, class: "btn btn-success center-block"%>
+        </div>
+        <div class="col-xs-2 debugger">
+        <%= button_to 'Delete', {action: 'destroy', id: todo.id}, method: :delete, class: "btn btn-danger center-block"%>
+        </div>
+      </div>
     </div>
     <% end %>
   </div>
