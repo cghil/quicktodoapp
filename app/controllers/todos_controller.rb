@@ -14,7 +14,7 @@ class TodosController < ApplicationController
     @todo.completed = true
     @todo.save
     if @todo.completed
-      redirect_to todos_path
+      render json: @todo
     end
   end
 

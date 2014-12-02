@@ -1,8 +1,23 @@
 $(document).ready(function(){
   checkMarker();
+  $(document).on('click', 'div.box', completedTodo)
 });
 
-// note: i believe there will be a delegation problem when a todo is add to the page; will fix later
+function completedTodo(evt){
+  var data = $(this).attr('id')
+  var that = this;
+  $.ajax({
+    type: 'PATCH',
+    url: '/todos/'+data+'/finished',
+    data: data
+  }).done(addCheckMark)
+}
+
+function addCheckMark(reply){
+  $('#'+reply.id).unbind('mouseenter mouseleave');
+  $('#'+reply.id).unbind('click');
+}
+// note: i believe there will be a delegation problem when a todo is add to the page when ajaxed; will fix later
 
 function checkMarker(){
   var boxes= $('.box')
