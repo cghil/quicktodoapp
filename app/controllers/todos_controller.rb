@@ -14,7 +14,16 @@ class TodosController < ApplicationController
     @todo.completed = true
     @todo.save
     if @todo.completed
-      redirect_to todos_path
+      render json: @todo
+    end
+  end
+
+  def undocompletion
+    @todo = Todo.find(params[:id])
+    @todo.completed = false
+    @todo.save
+    if @todo.completed == false
+      render json: @todo
     end
   end
 
