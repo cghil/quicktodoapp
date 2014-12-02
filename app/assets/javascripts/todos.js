@@ -10,14 +10,17 @@ function checkMarker(){
   for (var i=0; i < boxes.length; i++) {
     var nodeList= $(boxes[i]).has('i')
     if (nodeList.length > 0) {
-      console.log('do not remove')
+      $(boxes[i]).unbind('click');
+      $(boxes[i]).on('click', function(evt) {
+        undoCompletion(evt, $(this))
+      });
     } else {
       $(boxes[i]).hover(
         function(){
           $(this).append('<i class="fa fa-check fa-4x"></i>');
         },
         function(){
-          $(this).find('.fa-check').remove()
+          $(this).find('.fa-check').remove();
         }
       );
     }
@@ -37,7 +40,6 @@ function completedTodo(evt){
 }
 
 function addCheckMark(reply){
-  debugger;
   var $boxThatIsChecked = $('#'+reply.id)
   $boxThatIsChecked.unbind('mouseenter mouseleave');
   $boxThatIsChecked.unbind('click');
@@ -62,5 +64,13 @@ function removeCheckMark(reply){
   var $boxThatIsUnchecked = $('#'+reply.id)
   $boxThatIsUnchecked.unbind('click')
   $boxThatIsUnchecked.on('click', completedTodo)
+  var allBoxes =$('.box')
+  for (var j=0; j < allBoxes.length; j++) {
+    $(allBoxes[j]).unbind('mouseenter mouseleave');
+  }
   checkMarker();
+}
+
+function makeItemDraggable(){
+
 }

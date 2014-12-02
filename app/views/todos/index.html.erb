@@ -4,7 +4,7 @@
   </div>
   <div id="todo list">
     <% @todos.each do |todo| %>
-    <div class="todo well simple-border">
+    <div class="todo well simple-border" data-id=<%= todo.id %>>
       <div class="row">
         <div class="col-xs-1">
           <div class="box" id="<%=todo.id %>">
