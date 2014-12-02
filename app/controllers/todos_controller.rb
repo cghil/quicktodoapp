@@ -18,6 +18,15 @@ class TodosController < ApplicationController
     end
   end
 
+  def undocompletion
+    @todo = Todo.find(params[:id])
+    @todo.completed = false
+    @todo.save
+    if @todo.completed == false
+      render json: @todo
+    end
+  end
+
   def destroy
     @todo = Todo.find(params[:id])
     @todo.destroy

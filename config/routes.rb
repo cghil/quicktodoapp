@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :todos
   root 'todos#index'
   patch 'todos/:id/finished' => 'todos#finished'
+  patch 'todos/:id/undocompletion' => 'todos#undocompletion'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
