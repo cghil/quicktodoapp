@@ -3,6 +3,8 @@ $(document).ready(function(){
   $(document).on('click', 'div.box', completedTodo);
 });
 
+// Hover to show user can add check mark to box
+
 function checkMarker(){
   var boxes= $('.box')
   for (var i=0; i < boxes.length; i++) {
@@ -22,6 +24,8 @@ function checkMarker(){
   }
 }
 
+// AJAX call to complete a todo
+
 function completedTodo(evt){
   var data = $(this).attr('id')
   var that = this;
@@ -33,6 +37,7 @@ function completedTodo(evt){
 }
 
 function addCheckMark(reply){
+  debugger;
   var $boxThatIsChecked = $('#'+reply.id)
   $boxThatIsChecked.unbind('mouseenter mouseleave');
   $boxThatIsChecked.unbind('click');
@@ -41,8 +46,7 @@ function addCheckMark(reply){
   })
 }
 
-// note: i believe there will be a delegation problem when a todo is add to the page when ajaxed; will fix later
-
+// AJAX call to undo a box that is checked
 
 function undoCompletion(evt, $boxThatIsChecked) {
   $boxThatIsChecked.children().remove();
@@ -52,12 +56,11 @@ function undoCompletion(evt, $boxThatIsChecked) {
     url: '/todos/'+idOfBox+'/undocompletion',
     data: idOfBox
   }).done(removeCheckMark)
-  // $(document).on('click', 'div.box', completedTodo);
 }
 
 function removeCheckMark(reply){
   var $boxThatIsUnchecked = $('#'+reply.id)
-  // var $boxThatIsUnchecked.unbind('click')
-  debugger;
+  $boxThatIsUnchecked.unbind('click')
   $boxThatIsUnchecked.on('click', completedTodo)
+  checkMarker();
 }
